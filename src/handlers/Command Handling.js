@@ -1,5 +1,5 @@
 // one of the last things im doing cus i suck at handlers lol
-const { REST, Routes, Collection } = require('discord.js');
+const { REST, Routes, Collection, Events } = require('discord.js');
 const { client_id, guild_id, bot_token, prefix } = require('../../login.json');
 const fs = require('node:fs');
 const path = require('node:path');
@@ -71,3 +71,26 @@ const rest = new REST().setToken(bot_token);
 		console.error(error);
 	}
 })();
+module.exports = (client) => {
+client.on(Events.InteractionCreate, async (interaction, client) => {
+	if (!interaction.isChatInputCommand()) return;
+
+	const command = interaction.client.commands.get(interaction.commandName);
+
+	if (!command) {
+		console.error(`No command matching ${interaction.commandName} was found.`);
+		return;
+	}
+
+	try {
+		await command.execute(interaction);
+	} catch (error) {
+		console.error(error);
+		if (interaction.replied || interaction.deferred) {
+			await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
+		} else {
+			await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+		}
+	}
+});
+}
