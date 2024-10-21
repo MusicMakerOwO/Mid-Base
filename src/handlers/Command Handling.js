@@ -9,7 +9,6 @@ const commands = [];
 const foldersPath = path.join(__dirname, '../slash');
 const commandFolders = fs.readdirSync(foldersPath);
 module.exports = (client) => {
-	client.commands = new Collection();
 const prefixFolders = fs.readdirSync("src/prefix").filter((f) => f.endsWith(".js"));
 
 for (arx of prefixFolders) {
