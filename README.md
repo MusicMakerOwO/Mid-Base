@@ -29,3 +29,7 @@ mongodb
 **Fill out everything in login.json (otherwise the bot will not work)**
 
 **Message me on discord for support (user is s3dking)**
+
+
+# IMPORTANT
+`MOVE ALL FILES IN THE FOLDER AND MOVE IT TO THE MAIN DIRECTORY`
