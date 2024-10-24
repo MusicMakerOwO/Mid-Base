@@ -37,15 +37,15 @@
 
 * Here is a list of all of the logging colors:
 
-* ==Info: yellow==
+ * Info: yellow
 
-* ==Error: red==
+ * Error: red
 
-* ==Success: green==
+ * Success: green
 
-* ==Debug: blue==
+ * Debug: blue
 
-* ==Warn: orange==
+ * Warn: orange
 
 
 CREDITS TO MUSICMAKER FOR LETTING ME USE THE COLORED LOGS SYSTEM
