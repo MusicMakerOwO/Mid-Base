@@ -4,18 +4,18 @@ const { client_id, bot_token, prefix } = require('../../login.json');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const commands = [];
-// Grab all the command folders from the commands directory you created earlier
-const foldersPath = path.join(__dirname, '../slash');
-const commandFolders = fs.readdirSync(foldersPath);
-
 module.exports = async (client) => {
+	const commands = [];
+	
+	// Grab all the command folders from the commands directory you created earlier
+	const foldersPath = path.join(__dirname, '../slash');
+	const commandFolders = fs.readdirSync(foldersPath);
+	const prefixFolders = fs.readdirSync("src/prefix").filter((f) => f.endsWith(".js"));
 
 	client.prefix = new Collection();
 	client.commands = new Collection();
 
 	client.log = require('../logs.js');
-	const prefixFolders = fs.readdirSync("src/prefix").filter((f) => f.endsWith(".js"));
 
 	for (arx of prefixFolders) {
 		const Cmd = require('../prefix/' + arx)
