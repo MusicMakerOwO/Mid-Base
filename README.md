@@ -13,34 +13,34 @@
 
 ## FOLDER INFO
 
-* src/slash: Slash Commands Folder
+* src/slash: **Slash Commands Folder**
 
-* src/prefix: Prefix Commands Folder
+* src/prefix: **Prefix Commands Folder**
 
-* src/events: Events Folder ( CREDITS TO ghowsting.dev )
+* src/events: **Events Folder** *( CREDITS TO ghowsting.dev )*
 
-* src/handlers: The folder that makes everything possible
+* src/handlers: **The folder that makes everything possible**
 
-* src/components: Button, Dropdown Menu, Modal Folder ( CREDITS TO ghowsting.dev )
+* src/components: **Button, Dropdown Menu, Modal Folder** *( CREDITS TO ghowsting.dev )*
 
 ## Extra Info
 
-- Rename EXAMPLE.json To login.json**
+- Rename EXAMPLE.json To login.json
 
-- Fill out everything in login.json (otherwise the bot will not work)**
+- Fill out everything in login.json *(otherwise the bot will not work)*
 
-- Message me on discord for support (user is s3dking)**
+- Message me on discord for support *(user is s3dking)*
 
 ## About Logs
 
-* Define "client.log = require('the logs.js file path');" for the logs to work
+* Define "`client.log = require('the logs.js file path');`" for the logs to work
 
 * Here is a list of all of the logging colors:
-  * Info: yellow
-  * Error: red
-  * Success: green
-  * Debug: blue
-  * Warn: orange
+  * Info: **yellow**
+  * Error: **red**
+  * Success: **green**
+  * Debug: **blue**
+  * Warn: **orange**
 
 
-CREDITS TO MUSICMAKER FOR LETTING ME USE THE COLORED LOGS SYSTEM
+### CREDITS TO MUSICMAKER FOR LETTING ME USE THE COLORED LOGS SYSTEM
