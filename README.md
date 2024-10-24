@@ -36,16 +36,11 @@
 * Define "client.log = require('the logs.js file path');" for the logs to work
 
 * Here is a list of all of the logging colors:
-
- * Info: yellow
-
- * Error: red
-
- * Success: green
-
- * Debug: blue
-
- * Warn: orange
+  * Info: yellow
+  * Error: red
+  * Success: green
+  * Debug: blue
+  * Warn: orange
 
 
 CREDITS TO MUSICMAKER FOR LETTING ME USE THE COLORED LOGS SYSTEM
