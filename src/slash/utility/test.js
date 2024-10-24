@@ -14,6 +14,11 @@ module.exports = {
                 description: 'tst',
                 value: 'opt'
             }
-        )
+        );
+
+        const row = new ActionRowBuilder()
+        .addComponents(menu)
+
+        await interaction.reply({ content: 'hello', components: [row] })
     }
 }
