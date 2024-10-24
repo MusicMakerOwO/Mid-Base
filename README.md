@@ -1,12 +1,13 @@
-uh idk what to put here...
+# IMPORTANT
+* ==MOVE ALL FILES IN THE FOLDER AND MOVE IT TO THE MAIN DIRECTORY==
 
 ## REQUIRED PACKAGES
 
-discord.js
+* discord.js
 
-mongoose
+* mongoose
 
-mongodb
+* mongodb
 
 *RUN npm i (the package) TO DOWNLOAD ALL OF THESE PACKAGES*
 
@@ -14,11 +15,11 @@ mongodb
 
 * src/slash: Slash Commands Folder
 
-- src/prefix: Prefix Commands Folder
+* src/prefix: Prefix Commands Folder
 
 * src/events: Events Folder ( CREDITS TO ghowsting.dev )
 
-- src/handlers: The folder that makes everything possible
+* src/handlers: The folder that makes everything possible
 
 * src/components: Button, Dropdown Menu, Modal Folder ( CREDITS TO ghowsting.dev )
 
@@ -32,23 +33,19 @@ mongodb
 
 ## About Logs
 
-**Define "client.log = require('the logs.js file path');" for the logs to work**
+* Define "client.log = require('the logs.js file path');" for the logs to work
 
-**Here is a list of all of the logging colors:**
+* Here is a list of all of the logging colors:
 
-*Info: yellow*
+* ==Info: yellow==
 
-*Error: red*
+* ==Error: red==
 
-*Success: green*
+* ==Success: green==
 
-*Debug: blue*
+* ==Debug: blue==
 
-*Warn: orange*
+* ==Warn: orange==
 
 
 CREDITS TO MUSICMAKER FOR LETTING ME USE THE COLORED LOGS SYSTEM
-
-
-# IMPORTANT
-`MOVE ALL FILES IN THE FOLDER AND MOVE IT TO THE MAIN DIRECTORY`
