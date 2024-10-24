@@ -12,15 +12,15 @@ mongodb
 
 ## FOLDER INFO
 
-**src/slash:** Slash Commands Folder
+- src/slash: Slash Commands Folder
 
-**src/prefix:** Prefix Commands Folder
+- src/prefix: Prefix Commands Folder
 
-**src/events:** Events Folder ( CREDITS TO ghowsting.dev )
+- src/events: Events Folder ( CREDITS TO ghowsting.dev )
 
-**src/handlers:** The folder that makes everything possible
+- src/handlers: The folder that makes everything possible
 
-**src/components:** Button, Dropdown Menu, Modal Folder ( CREDITS TO ghowsting.dev )
+- src/components: Button, Dropdown Menu, Modal Folder ( CREDITS TO ghowsting.dev )
 
 ## Extra Info
 
