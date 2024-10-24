@@ -9,7 +9,7 @@
 
 * mongodb
 
-*RUN npm i (the package) TO DOWNLOAD ALL OF THESE PACKAGES*
+**RUN npm i (the package) TO DOWNLOAD ALL OF THESE PACKAGES**
 
 ## FOLDER INFO
 
@@ -25,11 +25,11 @@
 
 ## Extra Info
 
-**Rename EXAMPLE.json To login.json**
+- Rename EXAMPLE.json To login.json**
 
-**Fill out everything in login.json (otherwise the bot will not work)**
+- Fill out everything in login.json (otherwise the bot will not work)**
 
-**Message me on discord for support (user is s3dking)**
+- Message me on discord for support (user is s3dking)**
 
 ## About Logs
 
