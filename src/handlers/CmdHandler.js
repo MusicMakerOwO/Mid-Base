@@ -99,5 +99,8 @@ module.exports = async (client) => {
 			console.error(error);
 			await message.reply('There was an error executing that command!');
 		}
+		if(command.execute) {
+			console.log(`Message: ${prefix}${commandName} has been executed by ${message.author.tag}`)
+		}
 	});
 }
