@@ -46,7 +46,7 @@ module.exports = (client) => {
 
         try {
             await component.execute(interaction, client);
-            console.log(`Component ${interaction.customId} executed by ${interaction.user.tag}`);
+            console.log(`Component: ${interaction.customId} has been executed by ${interaction.user.tag}`);
         } catch (error) {
             console.error(error);
             await interaction.reply({

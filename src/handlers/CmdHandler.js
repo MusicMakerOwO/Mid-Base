@@ -78,6 +78,9 @@ module.exports = async (client) => {
 				await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 			}
 		}
+		if(command.execute) {
+			console.log(`Interaction: /${interaction.commandName} has been executed by ${interaction.user.tag}`)
+		}
 	});
 
 	client.on('messageCreate', async message => {;
