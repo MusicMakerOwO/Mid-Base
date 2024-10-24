@@ -1,3 +1,7 @@
+/*
+CREDITS TO MUSICMAKER FOR MAKING THIS!
+*/
+
 const { inspect } = require('node:util');
 
 const color = {
@@ -6,7 +10,8 @@ const color = {
     yellow: '\x1b[33m',
     green: '\x1b[32m',
     blue: '\x1b[34m',
-    reset: '\x1b[0m'
+    reset: '\x1b[0m',
+    purple: '\x1b[38;5;5m'
 }
 
 function getTimestamp() {
@@ -53,4 +58,8 @@ function debug(message) {
     console.log(`${color.blue}[${getTimestamp()}]${color.reset} ${parse(message)}`);
 }
 
-module.exports = { getTimestamp, info, warn, error, success, debug, color};
+function login(message) {
+    console.log(`${color.purple}[${getTimestamp()}]${color.reset} ${parse(message)}`);
+}
+
+module.exports = { getTimestamp, info, warn, error, success, debug, color, login};

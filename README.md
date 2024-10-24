@@ -30,6 +30,20 @@ mongodb
 
 **Message me on discord for support (user is s3dking)**
 
+## About Logs
+
+**Define "client.log = require('the logs.js file path');" for the logs to work**
+
+**Here is a list of all of the logging colors:**
+
+*Info: yellow*
+*Error: red*
+*Success: green*
+*Debug: blue*
+*Warn: orange*
+
+CREDITS TO MUSICMAKER FOR LETTING ME USE THE COLORED LOGS SYSTEM
+
 
 # IMPORTANT
 `MOVE ALL FILES IN THE FOLDER AND MOVE IT TO THE MAIN DIRECTORY`

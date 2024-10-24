@@ -5,12 +5,14 @@ client.log = require('../logs.js');
 // CLIENT PASSING \\
 require('./CmdHandler.js')(client);
 require("./ComponentHandler")(client);
+require('./mongo.js')(client);
+require('./EventHandler.js')(client);
 client.config = require('../../login.json')
 
 // READY EVENT \\
 
 client.on('ready', (x) => {
-    console.log(`${x.user.tag} Is Online`);
+    client.log.login(`${x.user.tag} Is Online`);
     // you can put a status here as well
 })
 

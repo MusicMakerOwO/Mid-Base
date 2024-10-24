@@ -4,6 +4,7 @@ const fs = require('fs');
 const path = require('path');
 
 module.exports = (client) => {
+    client.log = require('../logs.js');
     client.components = new Map();
 
     const componentsPath = path.join(__dirname, '..', 'components');
@@ -16,20 +17,20 @@ module.exports = (client) => {
         for (const file of componentFiles) {
             const component = require(path.join(folderPath, file));
 
-            console.log(`Loading component: ${component.customId}`);
+            client.log.success(`Loading component: ${component.customId}`);
 
             if (!component.customId) {
-                console.error(`The component at ${path.join(folderPath, file)} is missing a required "customId" property.`);
+                client.log.error(`The component at ${path.join(folderPath, file)} is missing a required "customId" property.`);
                 continue;
             }
 
             if (!component.execute) {
-                console.error(`The component at ${path.join(folderPath, file)} is missing a required "execute" property.`);
+                client.log.warn(`The component at ${path.join(folderPath, file)} is missing a required "execute" property.`);
                 continue;
             }
 
             if (client.components.has(component.customId)) {
-                console.warn(`[WARNING] A component with the customId "${component.customId}" already exists.`);
+                client.log.warn(`[WARNING] A component with the customId "${component.customId}" already exists.`);
             }
 
             if (component.customId) {
@@ -39,6 +40,7 @@ module.exports = (client) => {
     }
 
     client.on('interactionCreate', async interaction => {
+        client.log = require('../logs.js');
         if (!interaction.isButton() && !interaction.isStringSelectMenu() && !interaction.isModalSubmit()) return;
 
         const component = client.components.get(interaction.customId);
@@ -46,13 +48,13 @@ module.exports = (client) => {
 
         try {
             await component.execute(interaction, client);
-            console.log(`Component: ${interaction.customId} has been executed by ${interaction.user.tag}`);
+            client.log.info(`Component: ${interaction.customId} has been executed by ${interaction.user.tag}`);
         } catch (error) {
-            console.error(error);
+            client.log.error(error);
             await interaction.reply({
                 content: 'There was an error while executing this component!',
                 ephemeral: true
-            }).catch(console.error);
+            }).catch(client.log.error);
         }
     });
 };

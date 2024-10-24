@@ -35,7 +35,7 @@ module.exports = async (client) => {
 				client.commands.set(commandData.name, command);
 				commands.push(commandData);
 			} else {
-				console.warn(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+				client.log.warn(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 			}
 		}
 	}
@@ -44,7 +44,7 @@ module.exports = async (client) => {
 	const rest = new REST().setToken(bot_token);
 
 	try {
-		console.log(`Started refreshing ${commands.length} application (/) commands.`);
+		client.log.debug(`Started refreshing ${commands.length} application (/) commands.`);
 
 		// The put method is used to fully refresh all commands in the guild with the current set
 		const data = await rest.put(
@@ -52,10 +52,10 @@ module.exports = async (client) => {
 			{ body: commands },
 		);
 
-		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
+		client.log.success(`Successfully reloaded ${data.length} application (/) commands.`);
 	} catch (error) {
 		// And of course, make sure you catch and log any errors!
-		console.error(error);
+		client.log.error(error);
 	}
 
 	client.on(Events.InteractionCreate, async (interaction) => {
@@ -64,14 +64,14 @@ module.exports = async (client) => {
 		const command = client.commands.get(interaction.commandName);
 
 		if (!command) {
-			console.error(`No command matching ${interaction.commandName} was found.`);
+			client.log.error(`No command matching ${interaction.commandName} was found.`);
 			return;
 		}
 
 		try {
 			await command.execute(interaction);
 		} catch (error) {
-			console.error(error);
+			client.log.error(error);
 			if (interaction.replied || interaction.deferred) {
 				await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
 			} else {
@@ -79,7 +79,7 @@ module.exports = async (client) => {
 			}
 		}
 		if(command.execute) {
-			console.log(`Interaction: /${interaction.commandName} has been executed by ${interaction.user.tag}`)
+			client.log.info(`Interaction: /${interaction.commandName} has been executed by ${interaction.user.tag}`)
 		}
 	});
 
@@ -96,11 +96,11 @@ module.exports = async (client) => {
 		try {
 			await command.execute(message, args);
 		} catch (error) {
-			console.error(error);
+			client.log.error(error);
 			await message.reply('There was an error executing that command!');
 		}
 		if(command.execute) {
-			console.log(`Message: ${prefix}${commandName} has been executed by ${message.author.tag}`)
+			client.log.info(`Message: ${prefix}${commandName} has been executed by ${message.author.tag}`)
 		}
 	});
 }
