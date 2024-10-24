@@ -7,7 +7,6 @@ require('./CmdHandler.js')(client);
 require("./ComponentHandler")(client);
 require('./mongo.js')(client);
 require('./EventHandler.js')(client);
-client.config = require('../../login.json')
 
 // READY EVENT \\
 
