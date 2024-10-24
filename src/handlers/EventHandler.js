@@ -10,7 +10,7 @@ module.exports = (client) => {
     for (const file of eventFiles) {
         const filePath = path.join(eventsPath, file);
         const eventModule = require(filePath);
-        client.logs.info(`Loaded ${eventFiles.length} event(s)`);
+        console.log(`Loaded ${eventFiles.length} event(s)`);
         if (eventModule.once) {
             client.once(eventModule.event, (...args) => eventModule.execute(...args, client));
         } else {

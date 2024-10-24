@@ -9,6 +9,10 @@ const commands = [];
 const foldersPath = path.join(__dirname, '../slash');
 const commandFolders = fs.readdirSync(foldersPath);
 module.exports = (client) => {
+
+	client.prefix = new Collection();
+
+client.log = require('../logs.js');
 const prefixFolders = fs.readdirSync("src/prefix").filter((f) => f.endsWith(".js"));
 
 for (arx of prefixFolders) {
@@ -46,7 +50,7 @@ for (const folder of commandFolders) {
 		if ('data' in command && 'execute' in command) {
 			commands.push(command.data.toJSON());
 		} else {
-			console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+			console.warn(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 		}
 	}
 }
@@ -72,6 +76,7 @@ const rest = new REST().setToken(bot_token);
 	}
 })();
 module.exports = (client) => {
+	client.commands = new Collection();
 client.on(Events.InteractionCreate, async (interaction, client) => {
 	if (!interaction.isChatInputCommand()) return;
 
