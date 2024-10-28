@@ -2,3 +2,4 @@ node_modules
 package-lock.json
 package.json
 login.json
+src/slash/commands/user-info.js

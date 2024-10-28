@@ -1,4 +1,3 @@
-// one of the last things im doing cus i suck at handlers lol
 const { REST, Routes, Collection, Events } = require('discord.js');
 const { client_id, bot_token, prefix } = require('../../login.json');
 const fs = require('node:fs');
@@ -15,7 +14,7 @@ module.exports = async (client) => {
 	client.prefix = new Collection();
 	client.commands = new Collection();
 
-	client.log = require('../logs.js');
+	const Log = require('../utils/logs.js');
 
 	for (arx of prefixFolders) {
 		const Cmd = require('../prefix/' + arx)
@@ -32,10 +31,20 @@ module.exports = async (client) => {
 			const command = require(filePath);
 			if ('data' in command && 'execute' in command) {
 				const commandData = command.data.toJSON();
+				const cmds = commandData.name;
+				const data = command.data.toJSON();
+				if (commandData.alias) {
+					command.alias.map(alias => {
+						let data2 = data;
+						data.name = alias;
+						client.commands.set(data2.name, command);
+					});
+				}
+                Log.blue(`Loaded Command: /${cmds}`)
 				client.commands.set(commandData.name, command);
 				commands.push(commandData);
 			} else {
-				client.log.warn(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
+				Log.warn(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
 			}
 		}
 	}
@@ -44,18 +53,19 @@ module.exports = async (client) => {
 	const rest = new REST().setToken(bot_token);
 
 	try {
-		client.log.debug(`Started refreshing ${commands.length} application (/) commands.`);
+		Log.debug(`Started refreshing ${commands.length} application (/) commands.`);
 
 		// The put method is used to fully refresh all commands in the guild with the current set
 		const data = await rest.put(
 			Routes.applicationCommands(client_id),
 			{ body: commands },
 		);
+	
 
-		client.log.success(`Successfully reloaded ${data.length} application (/) commands.`);
+		Log.success(`Successfully reloaded ${data.length} application (/) commands.`);
 	} catch (error) {
 		// And of course, make sure you catch and log any errors!
-		client.log.error(error);
+		Log.error(error);
 	}
 
 	client.on(Events.InteractionCreate, async (interaction) => {
@@ -64,14 +74,14 @@ module.exports = async (client) => {
 		const command = client.commands.get(interaction.commandName);
 
 		if (!command) {
-			client.log.error(`No command matching ${interaction.commandName} was found.`);
+			Log.error(`No command matching ${interaction.commandName} was found.`);
 			return;
 		}
 
 		try {
 			await command.execute(interaction);
 		} catch (error) {
-			client.log.error(error);
+			Log.error(error);
 			if (interaction.replied || interaction.deferred) {
 				await interaction.followUp({ content: 'There was an error while executing this command!', ephemeral: true });
 			} else {
@@ -79,7 +89,7 @@ module.exports = async (client) => {
 			}
 		}
 		if(command.execute) {
-			client.log.info(`Interaction: /${interaction.commandName} has been executed by ${interaction.user.tag}`)
+			Log.info(`[ INTERACTION ] /${interaction.commandName} has been executed by ${interaction.user.tag}`)
 		}
 	});
 
@@ -90,17 +100,25 @@ module.exports = async (client) => {
 		const commandName = args.shift().toLowerCase();
 	
 		const command = client.prefix.get(commandName);
+
+		/*if (command.alias) {
+			prefix.alias.map(alias => {
+				let data2 = data;
+				data.name = alias;
+				client.prefix.set(data2.name, prefix);
+			});
+		}*/
 	
 		if (!command) return;
 	
 		try {
 			await command.execute(message, args);
 		} catch (error) {
-			client.log.error(error);
+			Log.error(error);
 			await message.reply('There was an error executing that command!');
 		}
 		if(command.execute) {
-			client.log.info(`Message: ${prefix}${commandName} has been executed by ${message.author.tag}`)
+			Log.info(`[ MESSAGE ] ${prefix}${commandName} has been executed by ${message.author.tag}`)
 		}
 	});
 }

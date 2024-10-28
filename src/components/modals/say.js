@@ -5,6 +5,6 @@ module.exports = {
 		await interaction.deferReply({ ephemeral: true });
 
         interaction.channel.send(message)
-        interaction.reply({ content: 'Message has been sent!', ephemeral: true})
+        interaction.editReply({ content: 'Message has been sent!', ephemeral: true})
     }
 }
