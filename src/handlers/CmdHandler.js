@@ -79,7 +79,7 @@ module.exports = async (client) => {
 		}
 
 		try {
-			await command.execute(interaction);
+			await command.execute(interaction, client);
 		} catch (error) {
 			Log.error(error);
 			if (interaction.replied || interaction.deferred) {
@@ -112,7 +112,7 @@ module.exports = async (client) => {
 		if (!command) return;
 	
 		try {
-			await command.execute(message, args);
+			await command.execute(message, args, client);
 		} catch (error) {
 			Log.error(error);
 			await message.reply('There was an error executing that command!');
